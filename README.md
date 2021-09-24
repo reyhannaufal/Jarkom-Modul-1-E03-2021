@@ -22,9 +22,19 @@ Daftar Kelompok:
   base
   ```
 5. Login ke portal.ichimarumaru.tech kemudian ikuti perintahnya! Username dan password bisa didapat dari query insert pada table users dari file .pcap!
+  Masukan display filter menggunakan code dibawah ini 
   ```
-  base
+  mysql contains “INSERT INTO users”
   ```
+  ![image](https://user-images.githubusercontent.com/59334824/134667817-ce6fda85-6e11-4130-8d52-7874e97ac5e5.png)
+  Ketika user dan password telah ditemukan, masuk ke web portal.ichimarumaru.tech dan isikan dengan user dan password yang telah didapatkan
+  ![image](https://user-images.githubusercontent.com/59334824/134667753-fa29fa7a-6840-4ca2-91a1-03ff9844bf1c.png)
+  
+  Urutan konfigurasi T568B seperti berikut:
+  
+   `oranye putih - oranye - hijau putih - biru - biru putih - hijau - coklat putih - coklat`
+  
+  
 6. Cari username dan password ketika melakukan login ke FTP Server!
  ```
   base
@@ -47,21 +57,31 @@ Daftar Kelompok:
   ```
 11. Filter sehingga wireshark hanya mengambil paket yang berasal dari port 80! 
   ```
-  base
+  src port 80
   ```
+  ![image](https://user-images.githubusercontent.com/59334824/134667641-5a112677-5f33-47ff-a665-b6e25a44d152.png)
+
 12. Filter sehingga wireshark hanya mengambil paket yang mengandung port 21!
   ```
   base
   ```
 13. Filter sehingga wireshark hanya menampilkan paket yang menuju port 443!
   ```
-  base
+  dst port 443
   ```
+  ![image](https://user-images.githubusercontent.com/59334824/134667570-6ca896c5-b01a-4ce4-841e-8a4eaa250ed9.png)
+
 14. Filter sehingga wireshark hanya mengambil paket yang tujuannya ke kemenag.go.id!
   ```
-  base
+  dst host kemenag.go.id
   ```
+  ![image](https://user-images.githubusercontent.com/59334824/134667517-af1b1303-ffa4-46a0-8879-646d8fd266a5.png)
+
 15. Filter sehingga wireshark hanya mengambil paket yang berasal dari ip kalian!
   ```
-  base
+  src host 192.168.18.6
   ```
+  Mendapatkan IP dengan cara(MacOS):
+  ![image](https://user-images.githubusercontent.com/59334824/134667118-0687bb44-1d73-4fbe-9fd1-4308a6270989.png)
+  ![image](https://user-images.githubusercontent.com/59334824/134667282-aa9b3592-461c-40e4-bbae-3536b63927a2.png)
+
