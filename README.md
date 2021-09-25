@@ -69,24 +69,50 @@ Daftar Kelompok:
   
 6. Cari username dan password ketika melakukan login ke FTP Server!
  ```
-  base
+  ftp.request.command == USER || ftp.request.command == PASS
  ```
+ Maka didapatkan username dan password seperti dibawah ini
+ ![image](https://user-images.githubusercontent.com/54606856/134765145-9d1dd903-b229-4a4c-bd18-4fbb5d80e2fe.png)
 7. Ada 500 file zip yang disimpan ke FTP Server dengan nama 0.zip, 1.zip, 2.zip, ..., 499.zip. Simpan dan Buka file pdf tersebut. (Hint = nama pdf-nya "Real.pdf")
   ```
-  base
+  frame contains "Real.pdf"
   ```
+  Dari filter itu kita mencari string dengan nama Real.pdf. Sehingga didapatkan hasil filter seperti ini
+  ![image](https://user-images.githubusercontent.com/54606856/134765239-84d08fb3-2c9a-449b-95b2-317fcdf4b584.png)
+  Setelah itu kita dapat follow tcp stream dan show data as raw lalu simpan dengan nama real.pdf. Sehingga didapatkan file pdf yang isinya seperti dibawah ini </br>
+  ![image](https://user-images.githubusercontent.com/54606856/134765433-43c724bb-f834-40e2-bd58-6bc1b3c7bc16.png)
+
 8. Cari paket yang menunjukan pengambilan file dari FTP tersebut!
+  </br>Karena ingin menunjukkan pengambilan file maka kita menggunakan RETR dengan protokol ftp
   ```
-  base
+  ftp.request.command == RETR
   ```
-9. Dari paket-paket yang menuju FTP terdapat inidkasi penyimpanan beberapa file. Salah satunya adalah sebuah file berisi data rahasia dengan nama "secret.zip". Simpan dan buka file tersebut!
+  ![image](https://user-images.githubusercontent.com/54606856/134765619-c630ed56-1535-4a2d-b770-a5ce6928cf45.png)
+9. Dari paket-paket yang menuju FTP terdapat indikasi penyimpanan beberapa file. Salah satunya adalah sebuah file berisi data rahasia dengan nama "secret.zip". Simpan dan buka file tersebut!
   ```
-  base
+  ftp-data.command contains "secret.zip"
   ```
+  ![image](https://user-images.githubusercontent.com/54606856/134765777-8216aa39-ff8b-4335-be92-ca88c59a6805.png)
+  Lalu follow tcp stream dan show data as raw setelah itu disimpan dengan nama secret.zip. Yang apabila dibuka akan ada file Wanted.pdf
+  ![image](https://user-images.githubusercontent.com/54606856/134765760-0afff520-3cc2-4da3-a931-22c9c1128213.png)
 10. Selain itu terdapat "history.txt" yang kemungkinan berisi history bash server tersebut! Gunakan isi dari "history.txt" untuk menemukan password untuk membuka file rahasia yang ada di "secret.zip"!
   ```
-  base
+  ftp-data.command contains "history.txt"
   ```
+  Pertama kita filter paket yang mengandung string "history.txt"
+  ![image](https://user-images.githubusercontent.com/54606856/134765891-ce32a101-3683-4be8-b006-a1f26b0dddd4.png)
+  Lalu follow tcp stream dan didapatkan</br>
+  ![image](https://user-images.githubusercontent.com/54606856/134765947-6bb0a855-db95-438f-8850-f1b322fe28f6.png)
+  </br> Lalu kita filter lagi paket yang mengandung string "bukanapaapa.txt"
+  ```
+  ftp-data.command contains "bukanapaapa.txt"
+  ```
+  ![image](https://user-images.githubusercontent.com/54606856/134765981-aa90edc7-09f4-4678-ad76-9f68a0a8817f.png)
+  Lalu follow tcp stream. Sehingga didapatkan passwordnya
+  ![image](https://user-images.githubusercontent.com/54606856/134766020-652e91d1-2762-4d23-8dd4-8ac0953a8a30.png)
+ </br>Lalu kita buka file wanted.pdf dengan password ```d1b1langbukanapaapajugagapercaya```
+  ![image](https://user-images.githubusercontent.com/54606856/134766069-9709a194-64f3-4fcc-b3fb-58e05ba1afc2.png)
+
 11. Filter sehingga wireshark hanya mengambil paket yang berasal dari port 80! 
   ```
   src port 80
