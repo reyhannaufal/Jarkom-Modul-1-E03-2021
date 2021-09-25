@@ -101,6 +101,7 @@ Daftar Kelompok:
   ![image](https://user-images.githubusercontent.com/73778173/134758875-cf3ebdba-04ec-44e8-8e2c-363946fa5a1d.png)
   
   untuk mengetes apakah filter port 21 dapat menangkap ftp dilakukan pengetesan dengan menggunakan `ftp://ftp.adobe.com` di windows explorer seperti dibawah ini
+  
   ![image](https://user-images.githubusercontent.com/73778173/134758930-91c34e02-9012-4c81-933d-20c93c7baf6c.png)
 
   Setelah itu dapat terlihat di wireshark bahwa port 21 dapat menangkap ftp seperti dibawah ini
