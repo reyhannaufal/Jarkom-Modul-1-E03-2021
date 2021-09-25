@@ -7,20 +7,52 @@ Daftar Kelompok:
 ## Soal dan Pembahasan
 1. Sebutkan webserver yang digunakan pada "ichimarumaru.tech"!
   ```
-  base
+  http.host contains "ichimarumaru.tech"
   ```
+  Setelah kita menggunakkan syntax tersebut kita akan mendapatkan hasil seperti ini
+  ![image](https://user-images.githubusercontent.com/73778173/134756642-204905db-a6d2-472b-b18f-70fc11d22b81.png)
+  
+  Dari sini kita bisa follow http stream dan dari situ bisa di diketahui server: nginx/1.18.0 (Ubuntu) seperti dibawah ini
+  ![image](https://user-images.githubusercontent.com/73778173/134756791-a0f71c83-a7ec-4452-bf61-e104a6fc3103.png)
+
 2. Temukan paket dari web-web yang menggunakan basic authentication method!
   ```
-  base
+  http.authbasic
   ```
+  Setelah itu dapat dilihat dari authorization di bawah ini bahwa web tersebut adalah basic
+  ![image](https://user-images.githubusercontent.com/73778173/134757393-d08da247-6560-491e-ae8b-987fd9cccb9a.png)
+
 3. Ikuti perintah di basic.ichimarumaru.tech! Username dan password bisa didapatkan dari file .pcapng!
   ```
-  base
+  http.host contains "basic.ichimarumaru.tech"
+  ```
+  Dengan menggunakan syntax ini kita akan bisa melihat username dan password dari basic.ichimarumaru.tech dibagian authorization credentials yaitu username `kuncimenujulautan` dan password `tQKEJFbgNGC1NCZlWAOjhyCOm6o3xEbPkJhTciZN`
+  ![image](https://user-images.githubusercontent.com/73778173/134758494-c1db1ec9-6d3b-4071-af55-9de04e3fa220.png)
+
+  Setelah itu basic.ichimarumaru.tech akan bisa di akses dan akan memunculkan halaman dibawah ini
+  ![image](https://user-images.githubusercontent.com/73778173/134758547-c82c79ba-f2dc-4820-a4ba-e6639e3acd8f.png)
+
+  Urutan konfigurasi T568A seperti berikut:
+  ```
+  Putih Hijau
+  Hijau
+  Putih Orange
+  Biru
+  Putih Biru
+  Orange
+  Putih Coklat
+  Coklat
   ```
 4. Temukan paket mysql yang mengandung perintah query select!
   ```
-  base
+  mysql contains "select" || mysql contains "SELECT"
   ```
+  Dengan menggunakan filter tersebut kita bisa menemukan mysql yang mengandung select seperti dibawah ini
+  ![image](https://user-images.githubusercontent.com/73778173/134758723-25d8ad9b-9eb7-4c0c-8ab8-a679694fe650.png)
+
+  Lalu apabil kita menggunakan TCP stream maka dapat dilihat syntax select yang diinginkan
+  ![image](https://user-images.githubusercontent.com/73778173/134758759-2e0e535f-85ee-4e34-82b9-db2d8eee373d.png)
+
 5. Login ke portal.ichimarumaru.tech kemudian ikuti perintahnya! Username dan password bisa didapat dari query insert pada table users dari file .pcap!
   Masukan display filter menggunakan code dibawah ini 
   ```
@@ -63,8 +95,17 @@ Daftar Kelompok:
 
 12. Filter sehingga wireshark hanya mengambil paket yang mengandung port 21!
   ```
-  base
+  port 21
   ```
+  Pertama kita akan capture filter port 21 dan akan ditampilkan seperti dibawah ini, dimana port 21 kosong karena port 21 merupakan port FTP
+  ![image](https://user-images.githubusercontent.com/73778173/134758875-cf3ebdba-04ec-44e8-8e2c-363946fa5a1d.png)
+  
+  untuk mengetes apakah filter port 21 dapat menangkap ftp dilakukan pengetesan dengan menggunakan `ftp://ftp.adobe.com` di windows explorer seperti dibawah ini
+  ![image](https://user-images.githubusercontent.com/73778173/134758930-91c34e02-9012-4c81-933d-20c93c7baf6c.png)
+
+  Setelah itu dapat terlihat di wireshark bahwa port 21 dapat menangkap ftp seperti dibawah ini
+  ![image](https://user-images.githubusercontent.com/73778173/134758941-c665b2d1-0412-4f99-a45c-a7f05855e57c.png)
+
 13. Filter sehingga wireshark hanya menampilkan paket yang menuju port 443!
   ```
   dst port 443
